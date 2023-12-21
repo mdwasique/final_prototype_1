@@ -10,12 +10,12 @@ const HomeScreen = () => {
   return (
     <div className="landing-page">
       <header className="header">
-        {/* <h1>
-          <strong className="strong">Bdnt Tutorials</strong>
+        <h1>
+          <strong className="strong">Bdnt Academy</strong>
         </h1>
         <p>
           <strong className="strong">Your gateway to quality education</strong>
-        </p> */}
+        </p>
       </header>
 
       <section className="features">

@@ -349,11 +349,12 @@ ing.large {
 
 /*-----my profile section----*/
 .profile-container {
-  background-color: aliceblue;
+  background-color: white;
   border-radius: 5px;
-  width: 600px;
+  width: 650px;
   height: 600px;
   padding: 2em;
+  margin-top: 4.6rem;
 }
 
 .profile-container > h1 {

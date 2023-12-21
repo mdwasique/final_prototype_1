@@ -24,24 +24,33 @@ const MyProfile = () => {
     <div className="profile-section">
       <div className="profile-container">
         <h1>My Profile</h1>
+        <Link to="/admin">
+          <strong>Dashboard</strong>
+        </Link>
         {userInfo && (
           <>
             <div className="user-details">
               <div className="user-name">
-                <strong>Name:</strong> {userInfo.name}
+                <strong>Name:</strong> <strong>{userInfo.name}</strong>
               </div>
+              <br />
               <div className="user-email">
-                <strong>Email:</strong> {userInfo.email}
+                <strong>Email:</strong> <strong>{userInfo.email}</strong>
               </div>
+              <br />
               <div className="user-phone">
-                <strong>Phone Number:</strong> {userInfo.phone}
+                <strong>Phone Number:</strong> <strong>{userInfo.phone}</strong>
               </div>
+              <br />
               <div className="user-order">
-                <Link to="/your-orders">Your Orders</Link>
+                <Link to="/your-orders">
+                  <strong>Your Orders</strong>
+                </Link>
               </div>
+              <br />
               <div className="sign-out-btn">
                 <button className="btn" onClick={signoutHandler}>
-                  Sign Out
+                  <strong>Sign Out</strong>
                 </button>
               </div>
             </div>

@@ -12,12 +12,16 @@ body {
 }
 
 .header {
-  background-image: url("https://img.freepik.com/premium-photo/abstract-blur-background-conference-hall-seminar-room_7188-569.jpg?w=740");
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(0, 0, 0, 0.25) 100%
+    ),
+    url("https://img.freepik.com/premium-photo/abstract-blur-background-conference-hall-seminar-room_7188-569.jpg?w=740");
   background-size: cover;
   height: 300px;
   color: white;
   padding: 20px;
-  background-position-y: -250px;
+  background-position-y: center;
   background-repeat: no-repeat;
 }
 
@@ -56,5 +60,5 @@ body {
 
 .strong {
   font-size: 6rem;
-  color: #f03c02;
+  color: #f7f7f7;
 }

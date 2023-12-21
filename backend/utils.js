@@ -8,7 +8,7 @@ export const generateToken = (user) => {
       email: user.email,
       phone: user.phone,
       adhaar: user.adhaar,
-      isAdmin: user.isAdmin,
+      role: user.role,
     },
     process.env.JWT_SECRET || "somethingsecret",
     {

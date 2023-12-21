@@ -12,6 +12,7 @@ import ApplyCourseScreen from "./screens/ApplyCourseScreen";
 import OrderScreen from "./screens/OrderScreen";
 import MyProfileScreen from "./screens/MyProfileScreen";
 import HomeScreen from "./screens/HomeScreen";
+import AdminDashScreen from "./screens/AdminDashScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -36,8 +37,11 @@ function App() {
             </Link>
           </div>
           <div className="cart-profile-flex">
+            <Link to="/">
+              <strong>Home</strong>
+            </Link>
             <Link to="/courses">
-              <strong>All Courses</strong>
+              <strong>Courses</strong>
             </Link>
             <Link to="/cart">
               <strong>Cart</strong>
@@ -48,7 +52,9 @@ function App() {
             {userInfo && userInfo.name ? (
               <div className="dropdown">
                 <Link to="/profile">
-                  <strong>{userInfo.name}</strong>
+                  <strong style={{ color: "lightgreen" }}>
+                    {userInfo.name}
+                  </strong>
                 </Link>
                 {/* <ul className="dropdown-content">
                   <Link to="#signout" onClick={signoutHandler}>
@@ -69,6 +75,7 @@ function App() {
             <Route path="/signin" element={<SigninScreen />}></Route>
             <Route path="/profile" element={<MyProfileScreen />}></Route>
             <Route path="/register" element={<RegisterScreen />}></Route>
+            <Route path="/admin" element={<AdminDashScreen />}></Route>
             <Route path="signin/form" element={<FormScreen />}></Route>
             <Route path="register/form" element={<FormScreen />}></Route>
             <Route path="/apply" element={<ApplyCourseScreen />}></Route>

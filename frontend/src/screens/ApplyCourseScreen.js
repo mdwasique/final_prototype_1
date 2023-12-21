@@ -43,19 +43,23 @@ const ApplyCourseScreen = () => {
         <ul>
           <li>
             <div className="card-body card">
-              <h2>Final Details</h2>
+              <h1>Final Details:</h1>
               <p>
                 <strong>Name:</strong>
                 {cart.formDetails.fullName}
                 <br />
+                <br />
                 <strong>Phone:</strong>
                 {cart.formDetails.phone}
+                <br />
                 <br />
                 <strong>Adhaar number:</strong>
                 {cart.formDetails.adhaar}
                 <br />
+                <br />
                 <strong>Address:</strong>
                 {cart.formDetails.address},{cart.formDetails.city},
+                <br />
                 <br />
                 <strong>Postal Code:</strong>
                 {cart.formDetails.postalCode}
@@ -92,7 +96,7 @@ const ApplyCourseScreen = () => {
           <div className="card-body card">
             <ul>
               <li>
-                <h2>Summary</h2>
+                <h2>Summary:</h2>
               </li>
               <li>
                 <div className="row">

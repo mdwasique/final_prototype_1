@@ -24,6 +24,7 @@ const orderSchema = new mongoose.Schema(
       postalCode: { type: String, required: true },
     },
     itemsPrice: { type: String, required: true },
+    accepted: { type: Boolean, default: false, required: true },
     taxPrice: { type: String, required: true },
     totalPrice: { type: String, required: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },

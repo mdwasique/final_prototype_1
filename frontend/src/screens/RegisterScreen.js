@@ -46,7 +46,9 @@ const RegisterScreen = () => {
         {loading && <LoadingBox></LoadingBox>}
         {error && <MessageBox variant="danger">{error}</MessageBox>}
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">
+            <strong>Name</strong>
+          </label>
           <input
             type="text"
             placeholder="Enter name"
@@ -56,7 +58,9 @@ const RegisterScreen = () => {
           />
         </div>
         <div>
-          <label htmlFor="email">Email Address</label>
+          <label htmlFor="email">
+            <strong>Email Address</strong>
+          </label>
           <input
             type="email"
             placeholder="Enter Email"
@@ -66,7 +70,9 @@ const RegisterScreen = () => {
           />
         </div>
         <div>
-          <label htmlFor="phone">phone</label>
+          <label htmlFor="phone">
+            <strong>Phone</strong>
+          </label>
           <input
             type="text"
             placeholder="Enter Phone Number"
@@ -76,7 +82,9 @@ const RegisterScreen = () => {
           />
         </div>
         <div>
-          <label htmlFor="password">password</label>
+          <label htmlFor="password">
+            <strong>Password</strong>
+          </label>
           <input
             type="password"
             placeholder="Enter Password"
@@ -86,7 +94,9 @@ const RegisterScreen = () => {
           />
         </div>
         <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword">
+            <strong>Confirm Password</strong>
+          </label>
           <input
             type="password"
             placeholder="Enter Confirm Password"

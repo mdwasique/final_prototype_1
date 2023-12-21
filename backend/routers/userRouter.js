@@ -10,7 +10,7 @@ const userRouter = express.Router();
 userRouter.get(
   "/seed",
   expressAsyncHandler(async (req, res) => {
-    // await User.remove({}); // becareful to re-run this, it clear your User collection in Mongodb and add new Users
+    await User.remove({}); // becareful to re-run this, it clear your User collection in Mongodb and add new Users
     const createdUsers = await User.insertMany(data.users);
     res.send({ createdUsers });
   })
@@ -27,7 +27,7 @@ userRouter.post(
           name: user.name,
           email: user.email,
           phone: user.phone,
-          isAdmin: user.isAdmin,
+          role: user.role,
           token: generateToken(user),
         });
         return;

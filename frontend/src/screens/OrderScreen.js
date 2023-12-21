@@ -63,11 +63,11 @@ export default function OrderScreen(props) {
                     <strong>Adhaar no:</strong>
                     {order.formDetails.adhaar}
                   </p>
-                  <strong>Paid:</strong>
+                  <strong>Payment Status:</strong>
                   {order.isPaid ? (
-                    <MessageBox variant="success">Yes</MessageBox>
+                    <MessageBox variant="success">Recieved</MessageBox>
                   ) : (
-                    <MessageBox variant="danger">No</MessageBox>
+                    <MessageBox variant="danger">Pending</MessageBox>
                   )}
                 </div>
               </li>
