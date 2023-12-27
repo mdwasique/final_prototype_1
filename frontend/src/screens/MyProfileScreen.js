@@ -24,9 +24,17 @@ const MyProfile = () => {
     <div className="profile-section">
       <div className="profile-container">
         <h1>My Profile</h1>
-        <Link to="/admin">
-          <strong>Dashboard</strong>
-        </Link>
+        {userInfo && userInfo.role === "admin" && (
+          <div>
+            <br />
+            <br />
+            <Link to="/adminDashBoard">
+              <strong>Admin Dashboard</strong>
+            </Link>
+          </div>
+        )}
+        <br />
+        <br />
         {userInfo && (
           <>
             <div className="user-details">
@@ -42,11 +50,6 @@ const MyProfile = () => {
                 <strong>Phone Number:</strong> <strong>{userInfo.phone}</strong>
               </div>
               <br />
-              <div className="user-order">
-                <Link to="/your-orders">
-                  <strong>Your Orders</strong>
-                </Link>
-              </div>
               <br />
               <div className="sign-out-btn">
                 <button className="btn" onClick={signoutHandler}>

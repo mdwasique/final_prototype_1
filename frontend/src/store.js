@@ -14,6 +14,14 @@ import {
   orderCreateReducer,
   orderDetailsReducer,
 } from "./reducers/orderReducers";
+import {
+  adminCourseDetailsReducer,
+  adminCourseListReducer,
+} from "./reducers/adminCourseReducers";
+import {
+  adminOrderListReducer,
+  adminOrderDetailsReducer,
+} from "./reducers/adminOrderReducers";
 
 const initialState = {
   userSignin: {
@@ -39,6 +47,10 @@ const reducer = combineReducers({
   userRegister: userRegisterReducer,
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
+  adminCourseList: adminCourseListReducer,
+  adminCourseDetails: adminCourseDetailsReducer,
+  adminOrderList: adminOrderListReducer,
+  adminOrderDetails: adminOrderDetailsReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -1,0 +1,22 @@
+.course-container {
+  border: 1px solid white;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 30px;
+  width: 60%;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: aliceblue;
+}
+
+.img-container {
+  width: 160px;
+  height: 60px;
+}
+.img-container > a > img {
+  width: 160px;
+  height: 60px;
+}

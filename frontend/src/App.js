@@ -12,7 +12,11 @@ import ApplyCourseScreen from "./screens/ApplyCourseScreen";
 import OrderScreen from "./screens/OrderScreen";
 import MyProfileScreen from "./screens/MyProfileScreen";
 import HomeScreen from "./screens/HomeScreen";
-import AdminDashScreen from "./screens/AdminDashScreen";
+import AdminAllCoursesScreen from "./screens/AdminAllCoursesScreen";
+import AdminCourseScreen from "./screens/AdminCourseScreen";
+import AdminAllordersScreen from "./screens/AdminAllOrdersScreen";
+import AdminOrderScreen from "./screens/AdminOrderScreen";
+import AdminDashBoardScreen from "./screens/AdminDashBoardScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -51,6 +55,10 @@ function App() {
             </Link>
             {userInfo && userInfo.name ? (
               <div className="dropdown">
+                <Link to="#">
+                  <strong>{userInfo.role}</strong>
+                </Link>
+                &nbsp; &nbsp;
                 <Link to="/profile">
                   <strong style={{ color: "lightgreen" }}>
                     {userInfo.name}
@@ -75,13 +83,32 @@ function App() {
             <Route path="/signin" element={<SigninScreen />}></Route>
             <Route path="/profile" element={<MyProfileScreen />}></Route>
             <Route path="/register" element={<RegisterScreen />}></Route>
-            <Route path="/admin" element={<AdminDashScreen />}></Route>
+            <Route
+              path="/admin/allCourses"
+              element={<AdminAllCoursesScreen />}
+            ></Route>
             <Route path="signin/form" element={<FormScreen />}></Route>
             <Route path="register/form" element={<FormScreen />}></Route>
             <Route path="/apply" element={<ApplyCourseScreen />}></Route>
             <Route path="/course/:id" element={<CourseScreen />}></Route>
+            <Route
+              path="/admin/allOrders"
+              element={<AdminAllordersScreen />}
+            ></Route>
+            <Route
+              path="/admincourse/:id"
+              element={<AdminCourseScreen />}
+            ></Route>
             <Route path="/cart/:id?" element={<CartScreen />}></Route>
             <Route path="/order/:id?" element={<OrderScreen />}></Route>
+            <Route
+              path="/admin/order/:id?"
+              element={<AdminOrderScreen />}
+            ></Route>
+            <Route
+              path="/adminDashBoard"
+              element={<AdminDashBoardScreen />}
+            ></Route>
             <Route path="/courses" element={<AllCoursesScreen />}></Route>
             <Route path="/" element={<HomeScreen />} exact></Route>
           </Routes>

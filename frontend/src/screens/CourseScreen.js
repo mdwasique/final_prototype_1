@@ -71,7 +71,10 @@ export default function CourseScreen(props) {
                   <li>
                     <div className="row">
                       <div>Price</div>
-                      <div className="price">Rs{course.price}</div>
+                      <div className="price">
+                        Rs:
+                        {course.price}
+                      </div>
                     </div>
                   </li>
                   <li>

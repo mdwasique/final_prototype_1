@@ -53,7 +53,7 @@ userRouter.post(
       name: createdUser.name,
       email: createdUser.email,
       phone: createdUser.phone,
-      isAdmin: createdUser.isAdmin,
+      role: createdUser.role,
       token: generateToken(createdUser),
     });
   })

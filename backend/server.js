@@ -2,8 +2,10 @@ import express from "express";
 import mongoose from "mongoose";
 import courseRouter from "./routers/courseRouter.js";
 import userRouter from "./routers/userRouter.js";
+import adminCourseRouter from "./routers/adminCourseRouter.js";
 import dotenv from "dotenv";
 import orderRouter from "./routers/orderRouter.js";
+import adminOrderRouter from "./routers/adminOrderRouter.js";
 
 dotenv.config();
 
@@ -24,6 +26,8 @@ mongoose.connect(
 app.use("/api/courses", courseRouter);
 app.use("/api/users", userRouter);
 app.use("/api/orders", orderRouter);
+app.use("/api/admin/courses", adminCourseRouter);
+app.use("/api/admin/orders", adminOrderRouter);
 
 app.get("/", (req, res) => {
   res.send("Hi server is working");

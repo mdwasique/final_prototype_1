@@ -35,3 +35,31 @@ export const isAuth = (req, res, next) => {
     res.status(401).send({ message: "No token" });
   }
 };
+
+export const isAdminAuth = (req, res, next) => {
+  const authorization = req.headers.authorization;
+
+  if (authorization) {
+    const token = authorization.slice(7, authorization.length); // Accessing token from headers authorization: "Bearer xxxxxx" by slicing
+
+    jwt.verify(
+      token,
+      process.env.JWT_SECRET || "somethingsecret",
+      (err, decode) => {
+        if (err) {
+          res.status(401).send({ message: "Invalid token" });
+        } else {
+          if (decode.role === "admin") {
+            // User is an admin, proceed to the next middleware or route handler
+            req.user = decode;
+            next();
+          } else {
+            res.status(403).send({ message: "Admin access required" });
+          }
+        }
+      }
+    );
+  } else {
+    res.status(401).send({ message: "No token" });
+  }
+};

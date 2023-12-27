@@ -37,7 +37,7 @@ const CartScreen = (props) => {
     <div>
       <div className="row top">
         <div className="col-2">
-          <h1>Course Cart</h1>
+          <h1>Cart Items</h1>
           {cartItems.length === 0 ? (
             <MessageBox>
               Cart is Empty.. <Link to="/courses">Get Course</Link>
@@ -107,7 +107,7 @@ const CartScreen = (props) => {
                   className="primary block"
                   disabled={cartItems.length === 0}
                 >
-                  Proceed to Checkout
+                  <strong>Proceed to Checkout</strong>
                 </button>
               </li>
             </ul>
