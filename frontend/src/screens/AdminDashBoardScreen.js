@@ -5,10 +5,10 @@ export default function AdminDashBoardScreen() {
   return (
     <div>
       <Link to="/admin/allCourses">
-        <h1>All Admin Courses</h1>
+        <h1>All Courses</h1>
       </Link>
       <Link to="/admin/allOrders">
-        <h1>All Admin Orders</h1>
+        <h1>All Orders</h1>
       </Link>
     </div>
   );

@@ -3,8 +3,8 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { useDispatch, useSelector } from "react-redux";
 import { adminlistOrders } from "../actions/adminOrderActions";
-import Order from "../components/Order";
 import "./AdminAllOrdersScreen.css";
+import AdminOrder from "../components/AdminOrder";
 
 const AdminAllordersScreen = () => {
   const adminOrderList = useSelector((state) => state.adminOrderList);
@@ -21,9 +21,9 @@ const AdminAllordersScreen = () => {
       ) : error ? (
         <MessageBox>{error}</MessageBox>
       ) : (
-        <div className="row center">
+        <div>
           {orders.map((order) => (
-            <Order key={order._id} order={order} />
+            <AdminOrder key={order._id} order={order} />
           ))}
         </div>
       )}

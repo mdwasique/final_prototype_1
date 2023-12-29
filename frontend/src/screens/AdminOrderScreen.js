@@ -1,26 +1,70 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import { adminDetailsOrder } from "../actions/adminOrderActions";
+import Axios from "axios";
 import "./AdminOrderScreen.css"; // Import the CSS file for styling
 
 const AdminOrderScreen = () => {
+  const location = useLocation();
+  const { pathname } = location;
   const navigate = useNavigate();
   const { id } = useParams();
   const orderId = id;
+  const userSignin = useSelector((state) => state.userSignin);
   const adminOrderDetails = useSelector((state) => state.adminOrderDetails);
+  const { userInfo } = userSignin;
   const { loading, order, error } = adminOrderDetails;
   const dispatch = useDispatch();
   const [isPaid, setIsPaid] = useState(false);
   const [joinedCourse, setJoinedCourse] = useState(false);
   const [courseCompleted, setCourseCompleted] = useState(false);
+  const [accepted, setAccepted] = useState(false);
 
   useEffect(() => {
     dispatch(adminDetailsOrder(orderId));
   }, [dispatch, orderId]);
+
+  const updateOrderHandler = async (e) => {
+    e.preventDefault();
+    console.log("isPaid:", isPaid);
+    console.log("accepted:", accepted);
+    console.log("joinedCourse:", joinedCourse);
+    console.log("courseCompleted:", courseCompleted);
+
+    try {
+      const response = await Axios.put(
+        `/api/admin/orders/${orderId}`,
+        {
+          isPaid,
+          accepted,
+          joinedCourse,
+          courseCompleted,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      );
+
+      if (response.data) {
+        console.log("Order updated:", response.data);
+        alert("Order Updated");
+        // navigate(window.location.pathname, { replace: true });
+        window.location.reload();
+      } else {
+        console.error("Failed to update order");
+        alert("Failed to Update Order");
+      }
+    } catch (error) {
+      console.error("Error updating order:", error);
+    }
+  };
 
   if (loading) {
     return <LoadingBox />;
@@ -69,7 +113,6 @@ const AdminOrderScreen = () => {
         <p>
           <strong>Order ID:</strong> {order._id}
         </p>
-
         <p>
           <strong>Items Price:</strong> Rs:{order.itemsPrice}
         </p>
@@ -81,36 +124,153 @@ const AdminOrderScreen = () => {
         </p>
         <div className="order_info">
           <div>
-            <strong>Paid:</strong> {order.isPaid ? "Yes" : "No"}
-          </div>
-          <div>
-            <strong>updatePaid</strong>
-          </div>
-        </div>
-        <div className="order_info">
-          <div>
-            <strong>Accepted:</strong> {order.accepted ? "Yes" : "No"}
-          </div>
-          <div>
-            <strong>updateAccepted:</strong>
+            <strong>Paid:</strong>{" "}
+            {order.isPaid ? (
+              <span className="success">
+                <strong>Yes</strong>
+              </span>
+            ) : (
+              <span className="danger">
+                <strong>No</strong>
+              </span>
+            )}
           </div>
         </div>
         <div className="order_info">
           <div>
-            <strong>Joined Course:</strong> {order.joinedCourse ? "Yes" : "No"}
+            <strong>Accepted:</strong>{" "}
+            {order.accepted ? (
+              <span className="success">
+                <strong>Yes</strong>
+              </span>
+            ) : (
+              <span className="danger">
+                <strong>No</strong>
+              </span>
+            )}
           </div>
+        </div>
+        <div className="order_info">
           <div>
-            <strong>update Joined Course:</strong>
+            <strong>Joined Course:</strong>{" "}
+            {order.joinedCourse ? (
+              <span className="success">
+                <strong>Yes</strong>
+              </span>
+            ) : (
+              <span className="danger">
+                <strong>No</strong>
+              </span>
+            )}
           </div>
         </div>
         <div className="order_info">
           <div>
             <strong>Course Complete:</strong>{" "}
-            {order.courseCompleted ? "Yes" : "No"}
+            {order.courseCompleted ? (
+              <span className="success">
+                <strong>Yes</strong>
+              </span>
+            ) : (
+              <span className="danger">
+                <strong>No</strong>
+              </span>
+            )}
           </div>
-          <div>
-            <strong>update Course Complete:</strong>
-          </div>
+        </div>
+        <br />
+        <br />{" "}
+        <div>
+          <form onSubmit={updateOrderHandler}>
+            <h1>Update Details</h1>
+            <br />
+            <div>
+              <label htmlFor="updatePaid">
+                <strong>Update Paid: </strong>
+              </label>
+              <select
+                id="updatePaid"
+                value={isPaid}
+                onChange={(e) => {
+                  setIsPaid(e.target.value);
+                }}
+              >
+                <option value="">Select--</option>
+                <option key={true} value={true}>
+                  Yes
+                </option>
+                <option key={false} value={false}>
+                  No
+                </option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="updateAccepted">
+                <strong>Update Accepted: </strong>
+              </label>
+              <select
+                id="updateAccepted"
+                value={accepted}
+                onChange={(e) => {
+                  setAccepted(e.target.value);
+                }}
+              >
+                <option value="">Select--</option>
+                <option key={true} value={true}>
+                  Yes
+                </option>
+                <option key={false} value={false}>
+                  No
+                </option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="updateJoinedCourse">
+                <strong>Update Joined Course: </strong>
+              </label>
+              <select
+                id="updateJoinedCourse"
+                value={joinedCourse}
+                onChange={(e) => {
+                  setJoinedCourse(e.target.value);
+                }}
+              >
+                <option value="">Select--</option>
+                <option key={true} value={true}>
+                  Yes
+                </option>
+                <option key={false} value={false}>
+                  No
+                </option>
+              </select>
+            </div>
+            <div>
+              <label htmlFor="updateCourseComplete">
+                <strong>Update Course Completed: </strong>
+              </label>
+              <select
+                id="updateCourseComplete"
+                value={courseCompleted}
+                onChange={(e) => {
+                  setCourseCompleted(e.target.value);
+                }}
+              >
+                <option value="">Select--</option>
+                <option key={true} value={true}>
+                  Yes
+                </option>
+                <option key={false} value={false}>
+                  No
+                </option>
+              </select>
+            </div>
+            <div>
+              <label />
+              <button className="primary" type="submit">
+                <strong>Update</strong>
+              </button>
+            </div>
+          </form>
         </div>
         <br />
         <br />

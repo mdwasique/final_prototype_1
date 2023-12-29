@@ -66,6 +66,25 @@ adminCourseRouter.put(
   })
 );
 
-// Add more admin routes as needed
+// adminRouter.js
+
+// ... (other imports and code)
+
+adminCourseRouter.delete(
+  "/delete/:id",
+  isAuth,
+  isAdminAuth,
+  expressAsyncHandler(async (req, res) => {
+    const courseId = req.params.id;
+    const course = await Course.findById(courseId);
+
+    if (course) {
+      await course.remove();
+      res.send({ message: "Course deleted successfully" });
+    } else {
+      res.status(404).send({ message: "Course not found" });
+    }
+  })
+);
 
 export default adminCourseRouter;

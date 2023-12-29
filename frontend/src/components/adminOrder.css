@@ -1,0 +1,51 @@
+/* adminOrder.css */
+
+/* Container Styles */
+.admin-order-container {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Link Styles */
+.admin-order-container a {
+  text-decoration: none;
+  color: #3498db;
+}
+
+.admin-order-container a:hover {
+  color: #2980b9;
+}
+
+/* Header Styles */
+.admin-order-container h2 {
+  margin-bottom: 8px;
+}
+
+/* Order Status Styles */
+.admin-order-container h1 {
+  color: #27ae60;
+}
+
+/* User ID Styles */
+.admin-order-container h2:nth-child(2) {
+  color: #e74c3c;
+}
+
+/* Name Styles */
+.admin-order-container h2:nth-child(3) {
+  color: #2c3e50;
+}
+
+/* Paid/Unpaid Styles */
+.admin-order-container h1 {
+  color: #f39c12;
+}
+
+/* Optional: Rating Styles */
+/* .rating {
+    // Add your rating styles here
+  } */

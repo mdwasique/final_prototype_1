@@ -38,10 +38,10 @@ adminOrderRouter.put(
     const order = await Order.findById(orderId);
 
     if (order) {
-      order.accepted = req.body.accepted || order.accepted;
-      order.isPaid = req.body.isPaid || order.isPaid;
-      order.joinedCourse = req.body.joinedCourse || order.joinedCourse;
-      order.courseComplete = req.body.courseComplete || order.courseComplete;
+      order.accepted = req.body.accepted;
+      order.isPaid = req.body.isPaid;
+      order.joinedCourse = req.body.joinedCourse;
+      order.courseCompleted = req.body.courseCompleted;
 
       const updatedOrder = await order.save();
       res.send(updatedOrder);

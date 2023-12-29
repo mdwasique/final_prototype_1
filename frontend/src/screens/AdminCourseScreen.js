@@ -58,10 +58,34 @@ const AdminCourseScreen = (props) => {
       setUpdateCategory("");
       setUpdateDescription("");
       setUpdateAvailable(true);
-      navigate("/admin/allCourses");
+      navigate(`/course/${courseId}`);
     } catch (error) {
       console.error("Error updating course:", error);
       // You can add logic to handle the error
+    }
+  };
+
+  const deleteHandler = async (e) => {
+    e.preventDefault();
+
+    if (window.confirm("Are you sure you want to delete this course?")) {
+      try {
+        const response = await Axios.delete(
+          `/api/admin/courses/delete/${courseId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${userInfo.token}`,
+            },
+          }
+        );
+
+        console.log("Deleted Course:", response.data);
+        alert("Course deleted successfully");
+        navigate("/admin/allCourses"); // Redirect to the course list page after deletion
+      } catch (error) {
+        console.error("Error deleting course:", error);
+        // You can add logic to handle the error
+      }
     }
   };
 
@@ -75,11 +99,12 @@ const AdminCourseScreen = (props) => {
         <div className="main-container">
           <br />
           <div className="container-image">
+            <h1>Update Course: {courseId}</h1>
+            <br />
             <img src={course.image} alt={course.name} className="image" />
           </div>
           <div className="container-update">
             <form onSubmit={updateCourseHandler}>
-              <h1>Update Course: {courseId}</h1>
               <div>
                 <label htmlFor="updateName">
                   <strong>Update Name: </strong>
@@ -170,8 +195,18 @@ const AdminCourseScreen = (props) => {
               <div className="image-selector"></div>
               <div>
                 <label />
-                <button className="primary" type="submit">
-                  Update
+                <button
+                  style={{ backgroundColor: "green", color: "white" }}
+                  type="submit"
+                >
+                  <strong>Update</strong>
+                </button>
+                &nbsp; &nbsp;
+                <button
+                  onClick={deleteHandler}
+                  style={{ backgroundColor: "red", color: "white" }}
+                >
+                  <strong>Delete Course</strong>
                 </button>
               </div>
             </form>

@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./adminOrder.css";
 
-export default function Course(props) {
+export default function AdminOrder(props) {
   const { order } = props;
 
   return (
-    <div key={order._id} className="card">
-      <div className="card-body">
+    <div key={order._id}>
+      <div>
         <Link to={`/admin/order/${order._id}`}>
           <h2>Order id:{order._id}</h2>
         </Link>
